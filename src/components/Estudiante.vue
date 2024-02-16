@@ -3,12 +3,13 @@
   <div class="container">
     <div class="GET">
       <h2>Buscar por ID:</h2>
-      <input id="id" v-model="id" type="text" />
+      <input id="id" v-model="id" type="text" placeholder="Ingrese id" />
       <button @click="consultarPorId">CONSULTAR</button>
+      <button @click="eliminar">ELIMINAR</button>
       <form class="form" action="">
         <p type="DATOS DEL ESTUDIANTE:"></p>
-        <p type="Nombre: "><input v-model="nombre" type="text" /></p>
-        <p type="Apellido: "><input v-model="apellido" type="text" /></p>
+        <p type="Nombre: "><input v-model="nombre" type="text" placeholder="Ingrese nombre"/></p>
+        <p type="Apellido: "><input v-model="apellido" type="text" placeholder="Ingrese apellido" /></p>
         <p type="Genero: "><input v-model="genero" type="text" /></p>
         <p type="Fecha Nacimiento: ">
           <input v-model="fechaNacimiento" type="text" />
@@ -19,7 +20,7 @@
       <h2 id="titulo2">INGRESAR DATOS:</h2>
       <form class="form2" action="">
         <p type="DATOS DEL INGRESO DE ESTUDIANTE:"></p>
-        <p type="Nombre: "><input v-model="nombreI" type="text" /></p>
+        <p type="Nombre: "><input v-model="nombreI" type="text"  /></p>
         <p type="Apellido: "><input v-model="apellidoI" type="text" /></p>
         <p type="Genero: "><input v-model="generoI" type="text" /></p>
         <p type="Fecha Nacimiento: ">
@@ -27,7 +28,24 @@
         </p>
       </form>
       <button @click="insertar">Insertar</button>
+   
     </div>
+
+        <div class="POST">
+      <h2 id="titulo2">INGRESAR DATOS:</h2>
+      <form class="form2" action="">
+        <p type="DATOS DE ACTUALIZACION DE ESTUDIANTE:"></p>
+        <p type="Nombre: "><input v-model="nombreI" type="text"  /></p>
+        <p type="Apellido: "><input v-model="apellidoI" type="text" /></p>
+        <p type="Genero: "><input v-model="generoI" type="text" /></p>
+        <p type="Fecha Nacimiento: ">
+          <input v-model="fechaNacimientoI" type="datetime" />
+        </p>
+      </form>
+      <button @click="actualizar">Actualizar</button>
+   
+    </div>
+
   </div>
 </template>
 
@@ -35,6 +53,8 @@
 import {
   consutarEstudianteFachada,
   insertarFachada,
+  actualizarFachada, 
+  eliminarFachada
 } from "../assets/helpers/clienteEstudiante.js";
 
 export default {
@@ -71,6 +91,22 @@ export default {
       };
 
       await insertarFachada(estuBody);
+    },
+
+    async actualizar() {
+
+      const estuBody = {
+        nombre: this.nombreI,
+        apellido: this.apellidoI,
+        genero: this.generoI,
+        fechaNacimiento: this.fechaNacimientoI,
+      };
+
+      await actualizarFachada(this.id, estuBody);
+    },
+
+    async eliminar() {
+      await eliminarFachada(this.id);
     },
   },
 };
