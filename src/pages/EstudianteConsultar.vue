@@ -2,7 +2,7 @@
   <h1>Página consultar</h1>
   <h2>Buscar por ID:</h2>
   <input id="id" v-model="id" type="text" placeholder="Ingrese id" />
-  <button @click="consultar ">CONSULTAR</button>
+  <button @click="consultar">CONSULTAR</button>
 
   <form class="form" action="">
     <p type="DATOS DEL ESTUDIANTE:"></p>
@@ -23,6 +23,16 @@
 import { consutarEstudianteFachada } from "../assets/helpers/clienteEstudiante.js";
 
 export default {
+  created() {
+    console.log(this.$route);
+    console.log(this.$route.params.id);
+    this.id = this.$route.params.id;
+    console.log(this.$route.query.params);
+
+
+
+  },
+
   data() {
     return {
       id: null,
