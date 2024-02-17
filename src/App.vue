@@ -1,6 +1,6 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <!--<EstudiantePagina/>>-->
+  <!--<EstudiantePagina/>-->
   <h1>UCE</h1>
   <router-view/>
   <h1>todos los derechos reservados</h1>

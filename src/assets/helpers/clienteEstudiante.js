@@ -26,6 +26,8 @@ const eliminar = async (id) => {
 
 // tenemos que declara que el metodo es asincrono para que se pueda usar el await
 // en los metodos facha de debe porner export para poder exportarlos
+
+
 export const consutarEstudianteFachada = async (id) => {
     return await consultarEstudiante(id);
 }
